@@ -21,6 +21,7 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
+            'paddle_product_id' => fake()->uuid,
             'slug' => fake()->slug(),
             'tagline' => fake()->sentence(),
             'title' => fake()->sentence(),
