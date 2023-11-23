@@ -1,6 +1,5 @@
 <?php
 
-use App\TwitterFacade;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -187,7 +186,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Twitter' => TwitterFacade::class,
+        'Twitter' => \App\Services\Twitter\TwitterFacade::class,
     ])->toArray(),
 
 ];
