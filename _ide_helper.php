@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.22.0.
+ * Generated for Laravel 10.33.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -435,6 +435,18 @@
         {
                         /** @var \Illuminate\Foundation\Application $instance */
                         return $instance->runningInConsole();
+        }
+                    /**
+         * Determine if the application is running any of the given console commands.
+         *
+         * @param string|array $commands
+         * @return bool 
+         * @static 
+         */ 
+        public static function runningConsoleCommand(...$commands)
+        {
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->runningConsoleCommand(...$commands);
         }
                     /**
          * Determine if the application is running unit tests.
@@ -2860,6 +2872,7 @@
          *
          * @param string $path
          * @return bool 
+         * @throws \ErrorException
          * @static 
          */ 
         public static function isExpired($path)
@@ -3505,6 +3518,18 @@
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
                         $instance->assertDispatchedWithoutChain($command, $callback);
+        }
+                    /**
+         * Create a new assertion about a chained batch.
+         *
+         * @param \Closure $callback
+         * @return \Illuminate\Support\Testing\Fakes\ChainedBatchTruthTest 
+         * @static 
+         */ 
+        public static function chainedBatch($callback)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        return $instance->chainedBatch($callback);
         }
                     /**
          * Assert if a batch was dispatched based on a truth-test callback.
@@ -5549,6 +5574,18 @@
                         return $instance->pretend($callback);
         }
                     /**
+         * Execute the given callback without "pretending".
+         *
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */ 
+        public static function withoutPretending($callback)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->withoutPretending($callback);
+        }
+                    /**
          * Bind values to their parameters in the given statement.
          *
          * @param \PDOStatement $statement
@@ -6474,6 +6511,18 @@
         {
                         /** @var \Illuminate\Events\Dispatcher $instance */
                         return $instance->setQueueResolver($resolver);
+        }
+                    /**
+         * Set the database transaction manager resolver implementation.
+         *
+         * @param callable $resolver
+         * @return \Illuminate\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function setTransactionManagerResolver($resolver)
+        {
+                        /** @var \Illuminate\Events\Dispatcher $instance */
+                        return $instance->setTransactionManagerResolver($resolver);
         }
                     /**
          * Gets the raw, unprepared listeners.
@@ -8142,6 +8191,17 @@
                         return $instance->getDispatcher();
         }
                     /**
+         * Get the array of global middleware.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getGlobalMiddleware()
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->getGlobalMiddleware();
+        }
+                    /**
          * Register a custom macro.
          *
          * @param string $name
@@ -8293,6 +8353,18 @@
         {
                         /** @var \Illuminate\Translation\Translator $instance */
                         $instance->load($namespace, $group, $locale);
+        }
+                    /**
+         * Register a callback that is responsible for handling missing translation keys.
+         *
+         * @param callable|null $callback
+         * @return static 
+         * @static 
+         */ 
+        public static function handleMissingKeysUsing($callback)
+        {
+                        /** @var \Illuminate\Translation\Translator $instance */
+                        return $instance->handleMissingKeysUsing($callback);
         }
                     /**
          * Add a new namespace to the loader.
@@ -13370,7 +13442,7 @@
                     /**
          * Create a new redirect response to a controller action.
          *
-         * @param string $action
+         * @param array|string $action
          * @param mixed $parameters
          * @param int $status
          * @param array $headers
@@ -14436,6 +14508,19 @@
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \Spatie\WebhookClient\WebhookClientServiceProvider::packageBooted()
+         * @param string $url
+         * @param string $name
+         * @param mixed $method
+         * @static 
+         */ 
+        public static function webhooks($url, $name = 'default', $method = 'post')
+        {
+                        return \Illuminate\Routing\Router::webhooks($url, $name, $method);
+        }
          
     }
             /**
@@ -14481,16 +14566,16 @@
                         return $instance->hasTable($table);
         }
                     /**
-         * Get the column listing for a given table.
+         * Get the columns for a given table.
          *
          * @param string $table
          * @return array 
          * @static 
          */ 
-        public static function getColumnListing($table)
+        public static function getColumns($table)
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnListing($table);
+                        return $instance->getColumns($table);
         }
                     /**
          * Drop all tables from the database.
@@ -14649,13 +14734,26 @@
          *
          * @param string $table
          * @param string $column
+         * @param bool $fullDefinition
          * @return string 
          * @static 
          */ 
-        public static function getColumnType($table, $column)
+        public static function getColumnType($table, $column, $fullDefinition = false)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnType($table, $column);
+                        return $instance->getColumnType($table, $column, $fullDefinition);
+        }
+                    /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */ 
+        public static function getColumnListing($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getColumnListing($table);
         }
                     /**
          * Modify a table on the schema.
@@ -14843,6 +14941,28 @@
         {
                         /** @var \Illuminate\Session\SessionManager $instance */
                         return $instance->blockDriver();
+        }
+                    /**
+         * Get the maximum number of seconds the session lock should be held for.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function defaultRouteBlockLockSeconds()
+        {
+                        /** @var \Illuminate\Session\SessionManager $instance */
+                        return $instance->defaultRouteBlockLockSeconds();
+        }
+                    /**
+         * Get the maximum number of seconds to wait while attempting to acquire a route block session lock.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function defaultRouteBlockWaitSeconds()
+        {
+                        /** @var \Illuminate\Session\SessionManager $instance */
+                        return $instance->defaultRouteBlockWaitSeconds();
         }
                     /**
          * Get the session configuration.
@@ -18356,7 +18476,440 @@
      
 }
 
-        namespace Spatie\LaravelIgnition\Facades { 
+        namespace App\Services\Twitter { 
+            /**
+     * 
+     *
+     */ 
+        class TwitterFacade {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function tweet($status)
+        {
+                        /** @var \App\Services\Twitter\NullTwitter $instance */
+                        return $instance->tweet($status);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function assertTweetSent($status)
+        {
+                        /** @var \Tests\Feature\Fakes\TwitterFake $instance */
+                        return $instance->assertTweetSent($status);
+        }
+         
+    }
+     
+}
+
+    namespace Livewire { 
+            /**
+     * 
+     *
+     * @see \Livewire\LivewireManager
+     */ 
+        class Livewire {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setProvider($provider)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setProvider($provider);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function provide($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->provide($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function component($name, $class = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->component($name, $class);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function componentHook($hook)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->componentHook($hook);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function propertySynthesizer($synth)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->propertySynthesizer($synth);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function directive($name, $callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->directive($name, $callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function precompiler($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->precompiler($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function new($name, $id = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->new($name, $id);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isDiscoverable($componentNameOrClass)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isDiscoverable($componentNameOrClass);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resolveMissingComponent($resolver)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->resolveMissingComponent($resolver);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function mount($name, $params = [], $key = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->mount($name, $params, $key);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function snapshot($component)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->snapshot($component);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fromSnapshot($snapshot)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->fromSnapshot($snapshot);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function listen($eventName, $callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->listen($eventName, $callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function current()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->current();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function update($snapshot, $diff, $calls)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->update($snapshot, $diff, $calls);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateProperty($component, $path, $value)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->updateProperty($component, $path, $value);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isLivewireRequest()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isLivewireRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function componentHasBeenRendered()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->componentHasBeenRendered();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function forceAssetInjection()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->forceAssetInjection();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setUpdateRoute($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setUpdateRoute($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getUpdateUri()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getUpdateUri();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setScriptRoute($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setScriptRoute($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function useScriptTagAttributes($attributes)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->useScriptTagAttributes($attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withUrlParams($params)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withUrlParams($params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withQueryParams($params)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withQueryParams($params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withCookie($name, $value)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withCookie($name, $value);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withCookies($cookies)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withCookies($cookies);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function test($name, $params = [])
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->test($name, $params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function visit($name)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->visit($name);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function actingAs($user, $driver = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->actingAs($user, $driver);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isRunningServerless()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isRunningServerless();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addPersistentMiddleware($middleware)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->addPersistentMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setPersistentMiddleware($middleware)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setPersistentMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPersistentMiddleware()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getPersistentMiddleware();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function flushState()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->flushState();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalUrl()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalUrl();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalPath()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalPath();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalMethod()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalMethod();
+        }
+         
+    }
+     
+}
+
+    namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
      *
@@ -18828,6 +19381,402 @@
         public static function hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class RedirectResponse {
+                    /**
+         * 
+         *
+         * @see \Laravel\Jetstream\JetstreamServiceProvider::boot()
+         * @param mixed $message
+         * @static 
+         */ 
+        public static function banner($message)
+        {
+                        return \Illuminate\Http\RedirectResponse::banner($message);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Jetstream\JetstreamServiceProvider::boot()
+         * @param mixed $message
+         * @static 
+         */ 
+        public static function dangerBanner($message)
+        {
+                        return \Illuminate\Http\RedirectResponse::dangerBanner($message);
+        }
+         
+    }
+     
+}
+
+    namespace Livewire\Features\SupportTesting { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Testing\TestResponse
+     */ 
+        class Testable {
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertPropertyWired()
+         * @param string $property
+         * @static 
+         */ 
+        public static function assertPropertyWired($property)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertPropertyWired($property);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertPropertyNotWired()
+         * @param string $property
+         * @static 
+         */ 
+        public static function assertPropertyNotWired($property)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertPropertyNotWired($property);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertPropertyEntangled()
+         * @param string $property
+         * @static 
+         */ 
+        public static function assertPropertyEntangled($property)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertPropertyEntangled($property);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertPropertyNotEntangled()
+         * @param string $property
+         * @static 
+         */ 
+        public static function assertPropertyNotEntangled($property)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertPropertyNotEntangled($property);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodWired()
+         * @param string $method
+         * @static 
+         */ 
+        public static function assertMethodWired($method)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodWired($method);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodNotWired()
+         * @param string $method
+         * @static 
+         */ 
+        public static function assertMethodNotWired($method)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodNotWired($method);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodWiredToForm()
+         * @param string $method
+         * @static 
+         */ 
+        public static function assertMethodWiredToForm($method)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodWiredToForm($method);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodNotWiredToForm()
+         * @param string $method
+         * @static 
+         */ 
+        public static function assertMethodNotWiredToForm($method)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodNotWiredToForm($method);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodWiredToEvent()
+         * @param string $method
+         * @param string $event
+         * @static 
+         */ 
+        public static function assertMethodWiredToEvent($method, $event)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodWiredToEvent($method, $event);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodNotWiredToEvent()
+         * @param string $method
+         * @param string $event
+         * @static 
+         */ 
+        public static function assertMethodNotWiredToEvent($method, $event)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodNotWiredToEvent($method, $event);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodWiredToEventWithoutModifiers()
+         * @param string $method
+         * @param string $event
+         * @static 
+         */ 
+        public static function assertMethodWiredToEventWithoutModifiers($method, $event)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodWiredToEventWithoutModifiers($method, $event);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertMethodNotWiredToEventWithoutModifiers()
+         * @param string $method
+         * @param string $event
+         * @static 
+         */ 
+        public static function assertMethodNotWiredToEventWithoutModifiers($method, $event)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertMethodNotWiredToEventWithoutModifiers($method, $event);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertContainsLivewireComponent()
+         * @param string $componentNeedleClass
+         * @static 
+         */ 
+        public static function assertContainsLivewireComponent($componentNeedleClass)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertContainsLivewireComponent($componentNeedleClass);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertDoesNotContainLivewireComponent()
+         * @param string $componentNeedleClass
+         * @static 
+         */ 
+        public static function assertDoesNotContainLivewireComponent($componentNeedleClass)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertDoesNotContainLivewireComponent($componentNeedleClass);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertContainsBladeComponent()
+         * @param string $componentNeedleClass
+         * @static 
+         */ 
+        public static function assertContainsBladeComponent($componentNeedleClass)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertContainsBladeComponent($componentNeedleClass);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertDoesNotContainBladeComponent()
+         * @param string $componentNeedleClass
+         * @static 
+         */ 
+        public static function assertDoesNotContainBladeComponent($componentNeedleClass)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertDoesNotContainBladeComponent($componentNeedleClass);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertSeeBefore()
+         * @param mixed $valueBefore
+         * @param mixed $valueAfter
+         * @static 
+         */ 
+        public static function assertSeeBefore($valueBefore, $valueAfter)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertSeeBefore($valueBefore, $valueAfter);
+        }
+                    /**
+         * 
+         *
+         * @see \Christophrumpel\MissingLivewireAssertions\CustomLivewireAssertionsMixin::assertDoNotSeeBefore()
+         * @param mixed $valueBefore
+         * @param mixed $valueAfter
+         * @static 
+         */ 
+        public static function assertDoNotSeeBefore($valueBefore, $valueAfter)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertDoNotSeeBefore($valueBefore, $valueAfter);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Routing { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */ 
+        class Router {
+                    /**
+         * 
+         *
+         * @see \Spatie\WebhookClient\WebhookClientServiceProvider::packageBooted()
+         * @param string $url
+         * @param string $name
+         * @param mixed $method
+         * @static 
+         */ 
+        public static function webhooks($url, $name = 'default', $method = 'post')
+        {
+                        return \Illuminate\Routing\Router::webhooks($url, $name, $method);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Route {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportLazyLoading\SupportLazyLoading::registerRouteMacro()
+         * @param mixed $enabled
+         * @static 
+         */ 
+        public static function lazy($enabled = true)
+        {
+                        return \Illuminate\Routing\Route::lazy($enabled);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\View { 
+            /**
+     * 
+     *
+     */ 
+        class ComponentAttributeBag {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportBladeAttributes\SupportBladeAttributes::provide()
+         * @param mixed $name
+         * @static 
+         */ 
+        public static function wire($name)
+        {
+                        return \Illuminate\View\ComponentAttributeBag::wire($name);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class View {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $data
+         * @static 
+         */ 
+        public static function layoutData($data = [])
+        {
+                        return \Illuminate\View\View::layoutData($data);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $section
+         * @static 
+         */ 
+        public static function section($section)
+        {
+                        return \Illuminate\View\View::section($section);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $title
+         * @static 
+         */ 
+        public static function title($title)
+        {
+                        return \Illuminate\View\View::title($title);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $slot
+         * @static 
+         */ 
+        public static function slot($slot)
+        {
+                        return \Illuminate\View\View::slot($slot);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $view
+         * @param mixed $params
+         * @static 
+         */ 
+        public static function extends($view, $params = [])
+        {
+                        return \Illuminate\View\View::extends($view, $params);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $view
+         * @param mixed $params
+         * @static 
+         */ 
+        public static function layout($view, $params = [])
+        {
+                        return \Illuminate\View\View::layout($view, $params);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param callable $callback
+         * @static 
+         */ 
+        public static function response($callback)
+        {
+                        return \Illuminate\View\View::response($callback);
         }
          
     }
@@ -19792,6 +20741,39 @@ namespace  {
             }
              
                 /**
+             * Chunk the results of a query by comparing IDs in descending order.
+             *
+             * @param int $count
+             * @param callable $callback
+             * @param string|null $column
+             * @param string|null $alias
+             * @return bool 
+             * @static 
+             */ 
+            public static function chunkByIdDesc($count, $callback, $column = null, $alias = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->chunkByIdDesc($count, $callback, $column, $alias);
+            }
+             
+                /**
+             * Chunk the results of a query by comparing IDs in a given order.
+             *
+             * @param int $count
+             * @param callable $callback
+             * @param string|null $column
+             * @param string|null $alias
+             * @param bool $descending
+             * @return bool 
+             * @static 
+             */ 
+            public static function orderedChunkById($count, $callback, $column = null, $alias = null, $descending = false)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orderedChunkById($count, $callback, $column, $alias, $descending);
+            }
+             
+                /**
              * Execute a callback over each item while chunking by ID.
              *
              * @param callable $callback
@@ -20613,7 +21595,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @param string $type
              * @param bool $where
              * @return \Illuminate\Database\Query\Builder 
@@ -20631,7 +21613,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string $operator
-             * @param string $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $second
              * @param string $type
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -20649,7 +21631,7 @@ namespace  {
              * @param string $as
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @param string $type
              * @param bool $where
              * @return \Illuminate\Database\Query\Builder 
@@ -20668,7 +21650,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20684,7 +21666,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string $operator
-             * @param string $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20701,7 +21683,7 @@ namespace  {
              * @param string $as
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20717,7 +21699,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20733,7 +21715,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string $operator
-             * @param string $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20750,7 +21732,7 @@ namespace  {
              * @param string $as
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20766,7 +21748,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string|null $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -22760,6 +23742,8 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Twitter extends \App\Services\Twitter\TwitterFacade {}
+            class Livewire extends \Livewire\Livewire {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
