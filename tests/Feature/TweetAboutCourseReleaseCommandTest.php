@@ -2,7 +2,6 @@
 
 use App\Console\Commands\TweetAboutCourseReleaseCommand;
 use App\Models\Course;
-use Twitter;
 
 use function Pest\Laravel\artisan;
 

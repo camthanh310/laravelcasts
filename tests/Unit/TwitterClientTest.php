@@ -2,11 +2,12 @@
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Services\Twitter\TwitterClient;
-use Mockery;
+
+use function Pest\Laravel\mock;
 
 it('call oauth client for a tweet', function () {
     $status = 'My tweet message';
-    $mock = Mockery::mock(TwitterOAuth::class)
+    $mock = mock(TwitterOAuth::class)
                 ->shouldReceive('post')
                 ->withArgs(['statuses/update', ['status' => $status]])
                 ->andReturn(['status' => $status])
